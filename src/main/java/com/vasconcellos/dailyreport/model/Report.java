@@ -1,10 +1,12 @@
 package com.vasconcellos.dailyreport.model;
 
-import com.vasconcellos.dailyreport.model.employee.Employee;
+import com.vasconcellos.dailyreport.model.employee.Foreman;
+import com.vasconcellos.dailyreport.model.employee.Supervisor;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,18 +17,14 @@ public class Report {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @JoinColumn(name = "foreman_id")
+    private Foreman foreman;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "supervisor_id")
+    private Supervisor supervisor;
 
-    @ManyToOne
-    @JoinColumn(name = "daily_report_id")
-    private DailyReport dailyReport;
-
-    private LocalDateTime entryTime;
-    private LocalDateTime exitTime;
+    @OneToMany(mappedBy = "dailyReport", cascade = CascadeType.ALL)
+    private List<Note> notes = new ArrayList<>();
 
 }
