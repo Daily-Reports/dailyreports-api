@@ -24,7 +24,8 @@ public class Report {
     @JoinColumn(name = "supervisor_id")
     private Supervisor supervisor;
 
-    @OneToMany(mappedBy = "dailyReport", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
     private List<Note> notes = new ArrayList<>();
 
 }
