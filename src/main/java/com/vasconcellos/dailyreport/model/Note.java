@@ -15,15 +15,15 @@ public class Note {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "report_id")
+    @JoinColumn(name = "report_id", nullable = false)
     private Report report;
 
     private LocalDateTime entryTime;

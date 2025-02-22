@@ -17,15 +17,14 @@ public class Report {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "foreman_id")
+    @JoinColumn(name = "foreman_id", nullable = false)
     private Foreman foreman;
 
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
     private Supervisor supervisor;
 
-
-    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes = new ArrayList<>();
 
 }
