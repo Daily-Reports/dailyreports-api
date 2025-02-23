@@ -22,7 +22,7 @@ public class OrderService {
 
     public Order save(OrderDto data) {
         Order toSave = orderMapper.toEntity(data);
-        toSave.setStatus(OrderStatus.DONE);
+        toSave.setStatus(OrderStatus.NOT_STARTED);
 
         return orderRepository.save(toSave);
     }
