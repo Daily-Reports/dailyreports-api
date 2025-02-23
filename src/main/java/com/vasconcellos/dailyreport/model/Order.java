@@ -24,7 +24,7 @@ public class Order {
     private Area area;
 
     @ManyToOne
-    @JoinColumn(name = "subarea_id", nullable = false)
+    @JoinColumn(name = "subarea_id")
     private Subarea subarea;
 
     @Enumerated(EnumType.STRING)
