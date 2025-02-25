@@ -1,6 +1,5 @@
 package com.vasconcellos.dailyreport.model;
 
-import com.vasconcellos.dailyreport.model.employee.Employee;
 import jakarta.persistence.*;
 import lombok.Data;
 

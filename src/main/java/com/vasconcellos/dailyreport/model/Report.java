@@ -1,7 +1,5 @@
 package com.vasconcellos.dailyreport.model;
 
-import com.vasconcellos.dailyreport.model.employee.Foreman;
-import com.vasconcellos.dailyreport.model.employee.Supervisor;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,11 +16,11 @@ public class Report {
 
     @ManyToOne
     @JoinColumn(name = "foreman_id", nullable = false)
-    private Foreman foreman;
+    private Employee foreman;
 
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
-    private Supervisor supervisor;
+    private Employee supervisor;
 
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes = new ArrayList<>();
