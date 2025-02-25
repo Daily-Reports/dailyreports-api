@@ -25,7 +25,9 @@ public class Note {
     @JoinColumn(name = "report_id", nullable = false)
     private Report report;
 
+    @Column(nullable = false)
     private LocalDateTime entryTime;
+    @Column(nullable = false)
     private LocalDateTime exitTime;
 
 }
