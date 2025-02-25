@@ -17,7 +17,7 @@ public class Note {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 

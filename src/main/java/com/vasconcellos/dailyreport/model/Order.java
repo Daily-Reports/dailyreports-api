@@ -3,6 +3,9 @@ package com.vasconcellos.dailyreport.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "orders")
@@ -40,5 +43,8 @@ public class Order {
 
     @Column(nullable = false)
     private String technical;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Note> notes = new ArrayList<>();
 
 }

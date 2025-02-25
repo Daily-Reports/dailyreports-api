@@ -26,6 +26,7 @@ public abstract class OrderMapper {
     @Mapping(source = "eventId", target = "event", qualifiedByName = "mapEventById")
     @Mapping(source = "areaId", target = "area", qualifiedByName = "mapAreaById")
     @Mapping(source = "subareaId", target = "subarea", qualifiedByName = "mapSubareaById")
+    @Mapping(target = "notes", ignore = true)
     public abstract Order toEntity(OrderDto orderDto);
 
     @Mapping(source = "event.id", target = "eventId")

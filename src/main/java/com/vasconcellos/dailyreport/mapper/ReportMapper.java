@@ -17,6 +17,7 @@ public abstract class ReportMapper {
 
     @Mapping(source = "foremanId", target = "foreman", qualifiedByName = "mapEmployeeById")
     @Mapping(source = "supervisorId", target = "supervisor", qualifiedByName = "mapEmployeeById")
+    @Mapping(target = "notes", ignore = true)
     public abstract Report toEntity(ReportDto orderDto);
 
     @Mapping(source = "foreman.id", target = "foremanId")
