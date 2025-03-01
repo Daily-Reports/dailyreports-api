@@ -1,5 +1,6 @@
 package com.vasconcellos.dailyreport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,6 +24,7 @@ public class Note {
 
     @ManyToOne
     @JoinColumn(name = "report_id", nullable = false)
+    @JsonIgnore
     private Report report;
 
     @Column(nullable = false)

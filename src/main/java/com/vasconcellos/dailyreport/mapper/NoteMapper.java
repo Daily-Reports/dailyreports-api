@@ -1,6 +1,7 @@
 package com.vasconcellos.dailyreport.mapper;
 
 import com.vasconcellos.dailyreport.dto.NoteDto;
+import com.vasconcellos.dailyreport.exception.InvalidDateException;
 import com.vasconcellos.dailyreport.model.Employee;
 import com.vasconcellos.dailyreport.model.Note;
 import com.vasconcellos.dailyreport.model.Order;
@@ -8,6 +9,7 @@ import com.vasconcellos.dailyreport.model.Report;
 import com.vasconcellos.dailyreport.service.EmployeeService;
 import com.vasconcellos.dailyreport.service.OrderService;
 import com.vasconcellos.dailyreport.service.ReportService;
+import org.mapstruct.BeforeMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -32,6 +34,12 @@ public abstract class NoteMapper {
     @Mapping(source = "employee.id", target = "employeeId")
     @Mapping(source = "order.id", target = "orderId")
     public abstract NoteDto toDto(Note note);
+
+    @BeforeMapping
+    public void validateNote(NoteDto data) {
+        if(data.getExitTime().isBefore(data.getEntryTime()))
+            throw new InvalidDateException("Exit date cannot be before entry date.");
+    }
 
     @Named("mapReportById")
     public Report mapReportById(Long id) {
