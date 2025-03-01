@@ -27,6 +27,10 @@ public class OrderService {
         return orderRepository.save(toSave);
     }
 
+    public void save(Order order) {
+        orderRepository.save(order);
+    }
+
     public Optional<Order> findById(Long id) {
         return orderRepository.findById(id);
     }
