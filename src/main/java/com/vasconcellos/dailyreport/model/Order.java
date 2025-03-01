@@ -1,8 +1,10 @@
 package com.vasconcellos.dailyreport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +40,15 @@ public class Order {
     @Column(nullable = false)
     private OrderStatus status;
 
+    private LocalDateTime endDate;
+
     @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
     private String technical;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Note> notes = new ArrayList<>();
 
