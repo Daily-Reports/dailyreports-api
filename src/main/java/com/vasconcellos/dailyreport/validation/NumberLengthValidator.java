@@ -17,12 +17,14 @@ public class NumberLengthValidator implements ConstraintValidator<NumberLength, 
         if (value == null)
             return true;
 
-        boolean isValid = String.valueOf(value).length() == length;
-
-        if (!isValid)
+        if (String.valueOf(value).length() != length) {
+            context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("must have " + length + " digits")
                     .addConstraintViolation();
 
-        return isValid;
+            return false;
+        }
+
+        return true;
     }
 }
