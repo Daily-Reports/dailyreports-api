@@ -19,9 +19,7 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<?> find(@RequestParam(required = false) String name) {
         if (name != null)
-            return employeeService.findByName(name)
-                    .map(ResponseEntity::ok)
-                    .orElseGet(() -> ResponseEntity.notFound().build());
+            return ResponseEntity.ok(employeeService.findByName(name));
 
         return ResponseEntity.ok(employeeService.findAll());
     }

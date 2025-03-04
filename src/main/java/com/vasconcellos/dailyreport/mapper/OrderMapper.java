@@ -37,16 +37,16 @@ public abstract class OrderMapper {
 
     @Named("mapEventById")
     public Event mapEventById(Long id) {
-        return eventService.findById(id).orElse(null);
+        return eventService.findById(id);
     }
 
     @Named("mapAreaById")
     public Area mapAreaById(Long id) {
-        return areaService.findById(id).orElse(null);
+        return areaService.findById(id);
     }
 
     @Named("mapSubareaById")
     public Subarea mapSubareaById(Long id) {
-        return id != null ? subareaService.findById(id).orElse(null) : null;
+        return subareaService.findById(id);
     }
 }

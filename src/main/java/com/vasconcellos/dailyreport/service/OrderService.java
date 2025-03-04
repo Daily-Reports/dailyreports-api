@@ -1,6 +1,7 @@
 package com.vasconcellos.dailyreport.service;
 
 import com.vasconcellos.dailyreport.dto.OrderDto;
+import com.vasconcellos.dailyreport.exception.ResourceNotFoundException;
 import com.vasconcellos.dailyreport.mapper.OrderMapper;
 import com.vasconcellos.dailyreport.model.Order;
 import com.vasconcellos.dailyreport.model.OrderStatus;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -31,8 +31,8 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public Optional<Order> findById(Long id) {
-        return orderRepository.findById(id);
+    public Order findById(Long id) {
+        return orderRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Order cannot be found"));
     }
 
     public List<Order> findAll() {

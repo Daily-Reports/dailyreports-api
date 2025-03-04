@@ -19,9 +19,7 @@ public class NoteController {
     @GetMapping
     public ResponseEntity<?> find(@RequestParam(required = false) Long id) {
         if (id != null)
-            return noteService.findById(id)
-                    .map(ResponseEntity::ok)
-                    .orElseGet(() -> ResponseEntity.notFound().build());
+            return ResponseEntity.ok(noteService.findById(id));
 
         return ResponseEntity.ok(noteService.findAll());
     }

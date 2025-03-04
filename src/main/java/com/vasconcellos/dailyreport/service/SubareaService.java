@@ -1,6 +1,7 @@
 package com.vasconcellos.dailyreport.service;
 
 import com.vasconcellos.dailyreport.dto.SubareaDto;
+import com.vasconcellos.dailyreport.exception.ResourceNotFoundException;
 import com.vasconcellos.dailyreport.model.Subarea;
 import com.vasconcellos.dailyreport.repository.SubareaRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -24,8 +24,9 @@ public class SubareaService {
         return subareaRepository.save(subarea);
     }
 
-    public Optional<Subarea> findById(Long id) {
-        return subareaRepository.findById(id);
+    public Subarea findById(Long id) {
+        return subareaRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Subarea cannot be found"));
     }
 
     public List<Subarea> findAll() {

@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -33,12 +32,7 @@ public class OrderController {
 
     @PutMapping("/{id}/update-status")
     public ResponseEntity<Order> updateStatus(@PathVariable long id, @RequestBody OrderUpdateStatusDto data) {
-        Optional<Order> orderOptional = orderService.findById(id);
-
-        if(orderOptional.isEmpty())
-            return ResponseEntity.notFound().build();
-
-        Order order = orderOptional.get();
+        Order order = orderService.findById(id);
 
         order.setEndDate(data.getStatus() != OrderStatus.DONE ? null : data.getEndDate());
         order.setStatus(data.getStatus());
@@ -50,12 +44,7 @@ public class OrderController {
 
     @PutMapping("/{id}/update-description")
     public ResponseEntity<Order> updateDescription(@PathVariable long id, @RequestBody OrderUpdateDescriptionDto data) {
-        Optional<Order> orderOptional = orderService.findById(id);
-
-        if(orderOptional.isEmpty())
-            return ResponseEntity.notFound().build();
-
-        Order order = orderOptional.get();
+        Order order = orderService.findById(id);
 
         order.setDescription(data.getDescription());
         orderService.save(order);
