@@ -1,7 +1,10 @@
 package com.vasconcellos.dailyreport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vasconcellos.dailyreport.validation.NumberLength;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -17,35 +20,38 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @NotNull
+    @NumberLength(length = 10)
     private Long number;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "event_id", nullable = false)
+    @JoinColumn(name = "event_id")
     private Event event;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "area_id", nullable = false)
+    @JoinColumn(name = "area_id")
     private Area area;
 
     @ManyToOne
     @JoinColumn(name = "subarea_id")
     private Subarea subarea;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private OrderSpeciality speciality;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private OrderStatus status;
 
     private LocalDateTime endDate;
 
-    @Column(nullable = false)
+    @NotBlank
     private String description;
 
-    @Column(nullable = false)
+    @NotBlank
     private String technical;
 
     @JsonIgnore

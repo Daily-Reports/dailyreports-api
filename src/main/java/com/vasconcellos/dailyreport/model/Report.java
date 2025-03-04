@@ -1,6 +1,7 @@
 package com.vasconcellos.dailyreport.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -14,10 +15,12 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "foreman_id", nullable = false)
+    @JoinColumn(name = "foreman_id")
     private Employee foreman;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
     private Employee supervisor;

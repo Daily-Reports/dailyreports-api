@@ -2,6 +2,7 @@ package com.vasconcellos.dailyreport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -16,20 +17,27 @@ public class Note {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
+    @NotNull
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
+    @NotNull
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "report_id", nullable = false)
+    @NotNull
     @JsonIgnore
     private Report report;
 
-    @Column(nullable = false)
+    @NotNull
     private LocalDateTime entryTime;
-    @Column(nullable = false)
+    @NotNull
     private LocalDateTime exitTime;
 
+    public boolean isOverlapping(Note newNote) {
+        return newNote.getEntryTime().isBefore(exitTime) &&
+                newNote.getExitTime().isAfter(entryTime);
+    }
 }

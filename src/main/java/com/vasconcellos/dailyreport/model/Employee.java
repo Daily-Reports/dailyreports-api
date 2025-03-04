@@ -2,6 +2,8 @@ package com.vasconcellos.dailyreport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,11 +17,11 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @NotBlank
     private String name;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private EmployeeType type;
 
     @JsonIgnore
