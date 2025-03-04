@@ -36,6 +36,8 @@ public class Note {
     @NotNull
     private LocalDateTime exitTime;
 
+    private String comment;
+
     public boolean isOverlapping(Note newNote) {
         return newNote.getEntryTime().isBefore(exitTime) &&
                 newNote.getExitTime().isAfter(entryTime);

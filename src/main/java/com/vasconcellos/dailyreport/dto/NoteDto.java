@@ -24,4 +24,6 @@ public class NoteDto {
     @NotNull
     private LocalDateTime exitTime;
 
+    private String comment;
+
 }

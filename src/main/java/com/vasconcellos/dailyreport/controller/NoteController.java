@@ -1,6 +1,7 @@
 package com.vasconcellos.dailyreport.controller;
 
 import com.vasconcellos.dailyreport.dto.NoteDto;
+import com.vasconcellos.dailyreport.dto.NoteUpdateCommentDto;
 import com.vasconcellos.dailyreport.model.Note;
 import com.vasconcellos.dailyreport.service.NoteService;
 import jakarta.validation.Valid;
@@ -27,6 +28,14 @@ public class NoteController {
     @PostMapping()
     public ResponseEntity<Note> create(@Valid @RequestBody NoteDto data) {
         return new ResponseEntity<>(noteService.save(data), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}/update-comment")
+    public ResponseEntity<Note> updateComment(@PathVariable long id, @RequestBody NoteUpdateCommentDto data) {
+        Note note = noteService.findById(id);
+        note.setComment(data.getComment());
+
+        return ResponseEntity.ok(noteService.save(note));
     }
 
     @DeleteMapping("/{id}")

@@ -34,6 +34,10 @@ public class NoteService {
         return noteRepository.save(toSave);
     }
 
+    public Note save(Note note) {
+        return noteRepository.save(note);
+    }
+
     public Note findById(Long id) {
         return noteRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note cannot be found."));
     }
