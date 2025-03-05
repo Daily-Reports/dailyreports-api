@@ -8,3 +8,9 @@ spring:
       ddl-auto: update
       validator:
         apply_to_ddl: true
+
+aws:
+  accessKeyId:
+  secretAccessKey:
+  region: sa-east-1
+  bucket: dailyreport-images

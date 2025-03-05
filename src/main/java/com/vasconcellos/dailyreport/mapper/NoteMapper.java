@@ -26,6 +26,7 @@ public abstract class NoteMapper {
     @Mapping(source = "reportId", target = "report", qualifiedByName = "mapReportById")
     @Mapping(source = "employeeId", target = "employee", qualifiedByName = "mapEmployeeById")
     @Mapping(source = "orderId", target = "order", qualifiedByName = "mapOrderById")
+    @Mapping(target = "imagesUrl", ignore = true)
     public abstract Note toEntity(NoteDto noteDto);
 
     @Mapping(source = "report.id", target = "reportId")
