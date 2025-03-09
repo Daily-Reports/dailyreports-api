@@ -26,7 +26,7 @@ public class ReportService {
         Report toSave = reportMapper.toEntity(data);
 
         validateEmployee(toSave.getForeman(), EmployeeType.FOREMAN);
-        validateEmployee(toSave.getForeman(), EmployeeType.SUPERVISOR);
+        validateEmployee(toSave.getSupervisor(), EmployeeType.SUPERVISOR);
 
         return reportRepository.save(toSave);
     }
