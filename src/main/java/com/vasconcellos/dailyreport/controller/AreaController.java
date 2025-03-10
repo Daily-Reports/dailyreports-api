@@ -1,7 +1,6 @@
 package com.vasconcellos.dailyreport.controller;
 
 import com.vasconcellos.dailyreport.dto.AreaDto;
-import com.vasconcellos.dailyreport.model.Area;
 import com.vasconcellos.dailyreport.service.AreaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +18,11 @@ public class AreaController {
     private final AreaService areaService;
 
     @GetMapping()
-    public ResponseEntity<List<Area>> findAll() {
+    public ResponseEntity<List<AreaDto>> findAll() {
         return new ResponseEntity<>(areaService.findAll(), HttpStatus.OK);
     }
     @PostMapping()
-    public ResponseEntity<Area> create(@Valid @RequestBody AreaDto data) {
+    public ResponseEntity<AreaDto> create(@Valid @RequestBody AreaDto data) {
         return new ResponseEntity<>(areaService.save(data), HttpStatus.CREATED);
     }
 

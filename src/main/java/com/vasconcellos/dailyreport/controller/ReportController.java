@@ -1,7 +1,7 @@
 package com.vasconcellos.dailyreport.controller;
 
 import com.vasconcellos.dailyreport.dto.ReportDto;
-import com.vasconcellos.dailyreport.model.Report;
+import com.vasconcellos.dailyreport.mapper.ReportMapper;
 import com.vasconcellos.dailyreport.service.ReportService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ReportController {
 
     private final ReportService reportService;
+    private final ReportMapper reportMapper;
 
     @GetMapping
     public ResponseEntity<?> find(@RequestParam(required = false) Long id) {
@@ -25,7 +26,7 @@ public class ReportController {
     }
 
     @PostMapping()
-    public ResponseEntity<Report> create(@Valid @RequestBody ReportDto data) {
+    public ResponseEntity<ReportDto> create(@Valid @RequestBody ReportDto data) {
         return new ResponseEntity<>(reportService.save(data), HttpStatus.CREATED);
     }
 

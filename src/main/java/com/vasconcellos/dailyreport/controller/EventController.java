@@ -1,7 +1,6 @@
 package com.vasconcellos.dailyreport.controller;
 
 import com.vasconcellos.dailyreport.dto.EventDto;
-import com.vasconcellos.dailyreport.model.Event;
 import com.vasconcellos.dailyreport.service.EventService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +18,12 @@ public class EventController {
     private final EventService eventService;
 
     @GetMapping()
-    public ResponseEntity<List<Event>> findAll() {
+    public ResponseEntity<List<EventDto>> findAll() {
         return new ResponseEntity<>(eventService.findAll(), HttpStatus.OK);
     }
+
     @PostMapping()
-    public ResponseEntity<Event> create(@Valid @RequestBody EventDto data) {
+    public ResponseEntity<EventDto> create(@Valid @RequestBody EventDto data) {
         return new ResponseEntity<>(eventService.save(data), HttpStatus.CREATED);
     }
 

@@ -12,6 +12,8 @@ import lombok.Data;
 @Builder
 public class EmployeeDto {
 
+    private Long id;
+
     @NotBlank
     private String name;
 

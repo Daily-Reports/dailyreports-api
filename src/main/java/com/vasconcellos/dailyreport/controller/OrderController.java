@@ -1,10 +1,7 @@
 package com.vasconcellos.dailyreport.controller;
 
-import com.vasconcellos.dailyreport.dto.OrderDto;
-import com.vasconcellos.dailyreport.dto.OrderUpdateDescriptionDto;
-import com.vasconcellos.dailyreport.dto.OrderUpdateStatusDto;
-import com.vasconcellos.dailyreport.model.Order;
-import com.vasconcellos.dailyreport.model.OrderStatus;
+import com.vasconcellos.dailyreport.dto.order.OrderDto;
+import com.vasconcellos.dailyreport.dto.order.OrderUpdateDto;
 import com.vasconcellos.dailyreport.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,34 +19,17 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping()
-    public ResponseEntity<List<Order>> findAll() {
+    public ResponseEntity<List<OrderDto>> findAll() {
         return new ResponseEntity<>(orderService.findAll(), HttpStatus.OK);
     }
     @PostMapping()
-    public ResponseEntity<Order> create(@Valid @RequestBody OrderDto data) {
+    public ResponseEntity<OrderDto> create(@Valid @RequestBody OrderDto data) {
         return new ResponseEntity<>(orderService.save(data), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}/update-status")
-    public ResponseEntity<Order> updateStatus(@PathVariable long id, @RequestBody OrderUpdateStatusDto data) {
-        Order order = orderService.findById(id);
-
-        order.setEndDate(data.getStatus() != OrderStatus.DONE ? null : data.getEndDate());
-        order.setStatus(data.getStatus());
-
-        orderService.save(order);
-
-        return ResponseEntity.ok(order);
-    }
-
-    @PutMapping("/{id}/update-description")
-    public ResponseEntity<Order> updateDescription(@PathVariable long id, @RequestBody OrderUpdateDescriptionDto data) {
-        Order order = orderService.findById(id);
-
-        order.setDescription(data.getDescription());
-        orderService.save(order);
-
-        return ResponseEntity.ok(order);
+    @PutMapping("/{id}/update")
+    public ResponseEntity<OrderDto> update(@PathVariable long id, @RequestBody OrderUpdateDto data) {
+        return ResponseEntity.ok(orderService.update(id, data));
     }
 
     @DeleteMapping("/{id}")

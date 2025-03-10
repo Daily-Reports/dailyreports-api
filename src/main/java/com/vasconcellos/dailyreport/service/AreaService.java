@@ -2,6 +2,7 @@ package com.vasconcellos.dailyreport.service;
 
 import com.vasconcellos.dailyreport.dto.AreaDto;
 import com.vasconcellos.dailyreport.exception.ResourceNotFoundException;
+import com.vasconcellos.dailyreport.mapper.AreaMapper;
 import com.vasconcellos.dailyreport.model.Area;
 import com.vasconcellos.dailyreport.repository.AreaRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,20 +17,25 @@ import java.util.List;
 public class AreaService {
 
     private final AreaRepository areaRepository;
+    private final AreaMapper areaMapper;
 
-    public Area save(AreaDto data) {
-        Area area = new Area();
-        area.setName(data.getName());
+    public AreaDto save(AreaDto data) {
+        Area area = areaMapper.toEntity(data);
 
-        return areaRepository.save(area);
+        return areaMapper.toDto(areaRepository.save(area));
     }
 
-    public Area findById(Long id) {
-        return areaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Area cannot be found."));
+    public AreaDto findById(Long id) {
+        return areaMapper.toDto(findByIdAsEntity(id));
     }
 
-    public List<Area> findAll() {
-        return areaRepository.findAll();
+    public Area findByIdAsEntity(Long id) {
+        return areaRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Area cannot be found."));
+    }
+
+    public List<AreaDto> findAll() {
+        return areaRepository.findAll().stream().map(areaMapper::toDto).toList();
     }
 
     public void deleteById(Long id) {

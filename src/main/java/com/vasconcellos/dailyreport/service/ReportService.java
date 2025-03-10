@@ -22,13 +22,17 @@ public class ReportService {
     private final ReportRepository reportRepository;
     private final ReportMapper reportMapper;
 
-    public Report save(ReportDto data) {
-        Report toSave = reportMapper.toEntity(data);
+    private final EmployeeService employeeService;
 
-        validateEmployee(toSave.getForeman(), EmployeeType.FOREMAN);
-        validateEmployee(toSave.getSupervisor(), EmployeeType.SUPERVISOR);
+    public ReportDto save(ReportDto data) {
+        Employee foreman = employeeService.findByIdAsEntity(data.getForemanId());
+        Employee supervisor = employeeService.findByIdAsEntity(data.getSupervisorId());
 
-        return reportRepository.save(toSave);
+        validateEmployee(foreman, EmployeeType.FOREMAN);
+        validateEmployee(supervisor, EmployeeType.SUPERVISOR);
+
+        Report report = reportMapper.toEntity(data, foreman, supervisor);
+        return reportMapper.toDto(reportRepository.save(report));
     }
 
     private void validateEmployee(Employee employee, EmployeeType expectedType) {
@@ -39,13 +43,17 @@ public class ReportService {
             throw new InvalidEmployeeException("The specified " + expectedType.toString() + " has an invalid type.");
     }
 
-    public Report findById(Long id) {
+    public ReportDto findById(Long id) {
+        return reportMapper.toDto(findByIdAsEntity(id));
+    }
+
+    public Report findByIdAsEntity(Long id) {
         return reportRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Report cannot be found."));
     }
 
-    public List<Report> findAll() {
-        return reportRepository.findAll();
+    public List<ReportDto> findAll() {
+        return reportRepository.findAll().stream().map(reportMapper::toDto).toList();
     }
 
     public void deleteById(Long id) {

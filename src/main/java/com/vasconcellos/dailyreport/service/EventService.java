@@ -2,6 +2,7 @@ package com.vasconcellos.dailyreport.service;
 
 import com.vasconcellos.dailyreport.dto.EventDto;
 import com.vasconcellos.dailyreport.exception.ResourceNotFoundException;
+import com.vasconcellos.dailyreport.mapper.EventMapper;
 import com.vasconcellos.dailyreport.model.Event;
 import com.vasconcellos.dailyreport.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,24 +17,28 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
+    private final EventMapper eventMapper;
 
-    public Event save(EventDto data) {
-        Event event = new Event();
-        event.setName(data.getName());
+    public EventDto save(EventDto data) {
+        Event event = eventMapper.toEntity(data);
 
-        return eventRepository.save(event);
+        return eventMapper.toDto(eventRepository.save(event));
     }
 
-    public Event findById(Long id) {
-        return eventRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Event cannot be found."));
+    public EventDto findById(Long id) {
+        return eventMapper.toDto(findByIdAsEntity(id));
     }
 
-    public List<Event> findAll() {
-        return eventRepository.findAll();
+    public Event findByIdAsEntity(Long id) {
+        return eventRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Event cannot be found."));
+    }
+
+    public List<EventDto> findAll() {
+        return eventRepository.findAll().stream().map(eventMapper::toDto).toList();
     }
 
     public void deleteById(Long id) {
         eventRepository.deleteById(id);
     }
-
 }

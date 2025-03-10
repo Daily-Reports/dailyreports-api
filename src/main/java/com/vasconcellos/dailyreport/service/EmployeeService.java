@@ -2,6 +2,7 @@ package com.vasconcellos.dailyreport.service;
 
 import com.vasconcellos.dailyreport.dto.EmployeeDto;
 import com.vasconcellos.dailyreport.exception.ResourceNotFoundException;
+import com.vasconcellos.dailyreport.mapper.EmployeeMapper;
 import com.vasconcellos.dailyreport.model.Employee;
 import com.vasconcellos.dailyreport.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,28 +17,30 @@ import java.util.List;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeMapper employeeMapper;
 
-    public Employee save(EmployeeDto data) {
-        Employee employee = new Employee();
+    public EmployeeDto save(EmployeeDto data) {
+        Employee employee = employeeMapper.toEntity(data);
 
-        employee.setName(data.getName());
-        employee.setType(data.getType());
-
-        return employeeRepository.save(employee);
+        return employeeMapper.toDto(employeeRepository.save(employee));
     }
 
-    public Employee findById(Long id) {
+    public EmployeeDto findById(Long id) {
+        return employeeMapper.toDto(findByIdAsEntity(id));
+    }
+
+    public Employee findByIdAsEntity(Long id) {
         return employeeRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Employee cannot be found."));
     }
 
-    public Employee findByName(String name) {
-        return employeeRepository.findByName(name).orElseThrow(() ->
+    public EmployeeDto findByName(String name) {
+        return employeeRepository.findByName(name).map(employeeMapper::toDto).orElseThrow(() ->
                 new ResourceNotFoundException("Employee cannot be found."));
     }
 
-    public List<Employee> findAll() {
-        return employeeRepository.findAll();
+    public List<EmployeeDto> findAll() {
+        return employeeRepository.findAll().stream().map(employeeMapper::toDto).toList();
     }
 
     public void deleteById(Long id) {

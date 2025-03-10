@@ -1,7 +1,6 @@
 package com.vasconcellos.dailyreport.controller;
 
 import com.vasconcellos.dailyreport.dto.EmployeeDto;
-import com.vasconcellos.dailyreport.model.Employee;
 import com.vasconcellos.dailyreport.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,7 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    public ResponseEntity<Employee> create(@Valid @RequestBody EmployeeDto data) {
+    public ResponseEntity<EmployeeDto> create(@Valid @RequestBody EmployeeDto data) {
         return new ResponseEntity<>(employeeService.save(data), HttpStatus.CREATED);
     }
 

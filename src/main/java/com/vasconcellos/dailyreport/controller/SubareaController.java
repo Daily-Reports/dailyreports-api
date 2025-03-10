@@ -1,7 +1,6 @@
 package com.vasconcellos.dailyreport.controller;
 
 import com.vasconcellos.dailyreport.dto.SubareaDto;
-import com.vasconcellos.dailyreport.model.Subarea;
 import com.vasconcellos.dailyreport.service.SubareaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +18,11 @@ public class SubareaController {
     private final SubareaService subareaService;
 
     @GetMapping()
-    public ResponseEntity<List<Subarea>> findAll() {
+    public ResponseEntity<List<SubareaDto>> findAll() {
         return new ResponseEntity<>(subareaService.findAll(), HttpStatus.OK);
     }
     @PostMapping()
-    public ResponseEntity<Subarea> create(@Valid @RequestBody SubareaDto data) {
+    public ResponseEntity<SubareaDto> create(@Valid @RequestBody SubareaDto data) {
         return new ResponseEntity<>(subareaService.save(data), HttpStatus.CREATED);
     }
 
