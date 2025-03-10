@@ -33,7 +33,7 @@ public class OrderService {
         Area area = areaService.findByIdAsEntity(data.getAreaId());
         Subarea subarea = null;
 
-        if(data.getAreaId() != null)
+        if(data.getSubareaId() != null)
             subarea = subareaService.findByIdAsEntity(data.getSubareaId());
 
         Order order = orderMapper.toEntity(data, event, area, subarea);
