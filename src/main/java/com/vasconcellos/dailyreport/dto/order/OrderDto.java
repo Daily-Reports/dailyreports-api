@@ -1,4 +1,4 @@
-package com.vasconcellos.dailyreport.dto;
+package com.vasconcellos.dailyreport.dto.order;
 
 import com.vasconcellos.dailyreport.model.OrderSpeciality;
 import com.vasconcellos.dailyreport.model.OrderStatus;
@@ -10,6 +10,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -38,5 +40,7 @@ public class OrderDto {
     private String description;
     @NotBlank
     private String technical;
+
+    private LocalDateTime endDate;
 
 }
