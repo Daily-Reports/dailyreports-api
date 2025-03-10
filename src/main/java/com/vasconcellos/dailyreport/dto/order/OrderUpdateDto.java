@@ -1,7 +1,6 @@
-package com.vasconcellos.dailyreport.dto;
+package com.vasconcellos.dailyreport.dto.order;
 
 import com.vasconcellos.dailyreport.model.OrderStatus;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,9 +8,10 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class OrderUpdateStatusDto {
+public class OrderUpdateDto {
 
-    @NotNull
+    private String description;
+
     private OrderStatus status;
     private LocalDateTime endDate;
 
