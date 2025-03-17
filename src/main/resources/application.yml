@@ -9,6 +9,11 @@ spring:
       validator:
         apply_to_ddl: true
 
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:dailyReports}
+
 aws:
   accessKeyId:
   secretAccessKey:
