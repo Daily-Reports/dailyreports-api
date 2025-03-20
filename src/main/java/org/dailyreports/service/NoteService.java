@@ -1,5 +1,6 @@
 package org.dailyreports.service;
 
+import lombok.RequiredArgsConstructor;
 import org.dailyreports.dto.EmployeeDto;
 import org.dailyreports.dto.note.NoteDto;
 import org.dailyreports.dto.note.NoteUpdateDto;
@@ -12,7 +13,6 @@ import org.dailyreports.model.Note;
 import org.dailyreports.model.Order;
 import org.dailyreports.model.Report;
 import org.dailyreports.repository.NoteRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;

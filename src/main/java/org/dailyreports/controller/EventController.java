@@ -1,9 +1,9 @@
 package org.dailyreports.controller;
 
-import org.dailyreports.dto.EventDto;
-import org.dailyreports.service.EventService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.dailyreports.dto.EventDto;
+import org.dailyreports.service.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

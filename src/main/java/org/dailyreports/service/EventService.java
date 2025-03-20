@@ -1,11 +1,11 @@
 package org.dailyreports.service;
 
+import lombok.RequiredArgsConstructor;
 import org.dailyreports.dto.EventDto;
 import org.dailyreports.exception.ResourceNotFoundException;
 import org.dailyreports.mapper.EventMapper;
 import org.dailyreports.model.Event;
 import org.dailyreports.repository.EventRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

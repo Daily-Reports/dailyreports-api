@@ -1,7 +1,7 @@
 package org.dailyreports.security.config;
 
-import org.dailyreports.security.SecurityFilter;
 import lombok.Data;
+import org.dailyreports.security.SecurityFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,5 +1,6 @@
 package org.dailyreports.service;
 
+import lombok.Data;
 import org.dailyreports.dto.user.UserDto;
 import org.dailyreports.dto.user.login.LoginDto;
 import org.dailyreports.dto.user.login.LoginResponseDto;
@@ -8,7 +9,6 @@ import org.dailyreports.mapper.UserMapper;
 import org.dailyreports.model.User;
 import org.dailyreports.repository.UserRepository;
 import org.dailyreports.security.TokenService;
-import lombok.Data;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

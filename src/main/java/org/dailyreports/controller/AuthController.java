@@ -1,11 +1,11 @@
 package org.dailyreports.controller;
 
+import jakarta.validation.Valid;
+import lombok.Data;
 import org.dailyreports.dto.user.UserDto;
 import org.dailyreports.dto.user.login.LoginDto;
 import org.dailyreports.dto.user.login.LoginResponseDto;
 import org.dailyreports.service.UserService;
-import jakarta.validation.Valid;
-import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

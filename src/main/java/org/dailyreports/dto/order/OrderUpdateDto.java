@@ -1,8 +1,8 @@
 package org.dailyreports.dto.order;
 
-import org.dailyreports.model.OrderStatus;
 import lombok.Builder;
 import lombok.Data;
+import org.dailyreports.model.OrderStatus;
 
 import java.time.LocalDateTime;
 

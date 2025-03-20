@@ -1,11 +1,11 @@
 package org.dailyreports.service;
 
+import lombok.RequiredArgsConstructor;
 import org.dailyreports.dto.AreaDto;
 import org.dailyreports.exception.ResourceNotFoundException;
 import org.dailyreports.mapper.AreaMapper;
 import org.dailyreports.model.Area;
 import org.dailyreports.repository.AreaRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

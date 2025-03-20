@@ -1,5 +1,6 @@
 package org.dailyreports.service;
 
+import lombok.RequiredArgsConstructor;
 import org.dailyreports.dto.ReportDto;
 import org.dailyreports.exception.InvalidEmployeeException;
 import org.dailyreports.exception.ResourceNotFoundException;
@@ -8,7 +9,6 @@ import org.dailyreports.model.Employee;
 import org.dailyreports.model.EmployeeType;
 import org.dailyreports.model.Report;
 import org.dailyreports.repository.ReportRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

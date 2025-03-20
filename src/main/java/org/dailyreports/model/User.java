@@ -40,7 +40,7 @@ public class User implements UserDetails {
                 authorities.add("ROLE_SUPERVISOR");
             }
             case SUPERVISOR -> authorities.add("ROLE_SUPERVISOR");
-            default -> throw new IllegalStateException("Unexpected value: " + role);
+            default -> {}
         }
 
         return authorities.stream().map(SimpleGrantedAuthority::new).toList();
