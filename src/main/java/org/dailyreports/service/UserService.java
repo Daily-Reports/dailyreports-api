@@ -12,6 +12,7 @@ import org.dailyreports.security.TokenService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,13 @@ public class UserService {
 
         String token = tokenService.generateToken((User) auth.getPrincipal());
         return new LoginResponseDto(token);
+    }
+
+    public UserDto validate(String token) {
+        String username = tokenService.validateToken(token);
+        User user = userRepository.findByUsername(username).orElseThrow(() ->
+                new UsernameNotFoundException("User with this token, cannot be found"));
+
+        return userMapper.toDto(user);
     }
 }

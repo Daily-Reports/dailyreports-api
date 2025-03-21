@@ -7,10 +7,7 @@ import org.dailyreports.dto.user.login.LoginDto;
 import org.dailyreports.dto.user.login.LoginResponseDto;
 import org.dailyreports.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Data
 @RestController
@@ -18,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final UserService userService;
+
+    @GetMapping("/validate")
+    public ResponseEntity<UserDto> validate(@RequestParam String token) {
+        return ResponseEntity.ok(userService.validate(token));
+    }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto data) {
