@@ -3,6 +3,7 @@ package org.dailyreports.controller;
 import org.dailyreports.exception.InvalidDateException;
 import org.dailyreports.exception.InvalidEmployeeException;
 import org.dailyreports.exception.ResourceNotFoundException;
+import org.dailyreports.exception.TokenValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,6 +25,11 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {ResourceNotFoundException.class})
     private ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {TokenValidationException.class})
+    private ResponseEntity<String> handleTokenValidationException(TokenValidationException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
