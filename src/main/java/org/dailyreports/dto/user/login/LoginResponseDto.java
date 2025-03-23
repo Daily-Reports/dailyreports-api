@@ -1,3 +1,5 @@
 package org.dailyreports.dto.user.login;
 
-public record LoginResponseDto(String token) {}
+import org.dailyreports.model.Role;
+
+public record LoginResponseDto(String username, Role role, String token) {}
