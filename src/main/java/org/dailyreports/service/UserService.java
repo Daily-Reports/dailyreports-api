@@ -55,7 +55,7 @@ public class UserService {
         User user = (User) auth.getPrincipal();
         String token = tokenService.generateToken(user);
 
-        return new LoginResponseDto(user.getUsername(), user.getRole(), token);
+        return new LoginResponseDto(userMapper.toDto(user), token);
     }
 
     public UserDto validate(String token) {
