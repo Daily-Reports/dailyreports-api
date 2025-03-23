@@ -6,6 +6,7 @@ import org.dailyreports.dto.user.login.LoginDto;
 import org.dailyreports.dto.user.login.LoginResponseDto;
 import org.dailyreports.exception.UsernameAlreadyUsedException;
 import org.dailyreports.mapper.UserMapper;
+import org.dailyreports.model.Role;
 import org.dailyreports.model.User;
 import org.dailyreports.repository.UserRepository;
 import org.dailyreports.security.TokenService;
@@ -30,12 +31,19 @@ public class UserService {
 
     public UserDto register(UserDto data) {
         String username = data.getUsername().toLowerCase();
+        String email = data.getEmail().toLowerCase();
 
         userRepository.findByUsername(username).ifPresent(existingUser -> {
             throw new UsernameAlreadyUsedException();
         });
 
+        userRepository.findByUsername(email).ifPresent(existingUser -> {
+            throw new UsernameAlreadyUsedException();
+        });
+
         User user = userMapper.toEntity(data, passwordEncoder);
+        user.setRole(Role.USER);
+
         return userMapper.toDto(userRepository.save(user));
     }
 
@@ -44,8 +52,10 @@ public class UserService {
                 UsernamePasswordAuthenticationToken(data.username(), data.password());
         Authentication auth = authenticationManager.authenticate(authenticationToken);
 
-        String token = tokenService.generateToken((User) auth.getPrincipal());
-        return new LoginResponseDto(token);
+        User user = (User) auth.getPrincipal();
+        String token = tokenService.generateToken(user);
+
+        return new LoginResponseDto(user.getUsername(), user.getRole(), token);
     }
 
     public UserDto validate(String token) {

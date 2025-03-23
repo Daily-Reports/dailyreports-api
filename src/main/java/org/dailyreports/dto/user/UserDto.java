@@ -1,10 +1,12 @@
 package org.dailyreports.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
+import org.dailyreports.model.Role;
 
 @Data
 @Builder
@@ -20,5 +22,11 @@ public class UserDto {
     @NotBlank
     @Size(min = 8, max = 128)
     private String password;
+
+    @Email
+    @NotBlank
+    private String email;
+
+    private Role role;
 
 }
