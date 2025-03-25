@@ -4,6 +4,7 @@ import lombok.Data;
 import org.dailyreports.dto.user.UserDto;
 import org.dailyreports.dto.user.login.LoginDto;
 import org.dailyreports.dto.user.login.LoginResponseDto;
+import org.dailyreports.exception.EmailAlreadyUsedException;
 import org.dailyreports.exception.UsernameAlreadyUsedException;
 import org.dailyreports.mapper.UserMapper;
 import org.dailyreports.model.Role;
@@ -37,8 +38,8 @@ public class UserService {
             throw new UsernameAlreadyUsedException();
         });
 
-        userRepository.findByUsername(email).ifPresent(existingUser -> {
-            throw new UsernameAlreadyUsedException();
+        userRepository.findByEmail(email).ifPresent(existingUser -> {
+            throw new EmailAlreadyUsedException();
         });
 
         User user = userMapper.toEntity(data, passwordEncoder);
