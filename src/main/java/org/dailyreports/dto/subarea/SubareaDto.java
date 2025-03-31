@@ -1,4 +1,4 @@
-package org.dailyreports.dto;
+package org.dailyreports.dto.subarea;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

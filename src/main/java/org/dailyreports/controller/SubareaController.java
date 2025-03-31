@@ -2,7 +2,8 @@ package org.dailyreports.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.SubareaDto;
+import org.dailyreports.dto.subarea.SubareaDto;
+import org.dailyreports.dto.subarea.SubareaUpdateDto;
 import org.dailyreports.service.SubareaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +22,15 @@ public class SubareaController {
     public ResponseEntity<List<SubareaDto>> findAll() {
         return new ResponseEntity<>(subareaService.findAll(), HttpStatus.OK);
     }
+
     @PostMapping()
     public ResponseEntity<SubareaDto> create(@Valid @RequestBody SubareaDto data) {
         return new ResponseEntity<>(subareaService.save(data), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}/update")
+    public ResponseEntity<SubareaDto> update(@PathVariable long id, @RequestBody SubareaUpdateDto data) {
+        return ResponseEntity.ok(subareaService.update(id, data));
     }
 
     @DeleteMapping("/{id}")

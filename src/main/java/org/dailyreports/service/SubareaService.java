@@ -1,7 +1,8 @@
 package org.dailyreports.service;
 
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.SubareaDto;
+import org.dailyreports.dto.subarea.SubareaDto;
+import org.dailyreports.dto.subarea.SubareaUpdateDto;
 import org.dailyreports.exception.ResourceNotFoundException;
 import org.dailyreports.mapper.SubareaMapper;
 import org.dailyreports.model.Subarea;
@@ -21,6 +22,15 @@ public class SubareaService {
 
     public SubareaDto save(SubareaDto data) {
         Subarea subarea = subareaMapper.toEntity(data);
+
+        return subareaMapper.toDto(subareaRepository.save(subarea));
+    }
+
+    public SubareaDto update(long id, SubareaUpdateDto data) {
+        Subarea subarea = findByIdAsEntity(id);
+
+        if(data.getName() != null)
+            subarea.setName(data.getName());
 
         return subareaMapper.toDto(subareaRepository.save(subarea));
     }
