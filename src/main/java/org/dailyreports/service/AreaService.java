@@ -1,7 +1,8 @@
 package org.dailyreports.service;
 
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.AreaDto;
+import org.dailyreports.dto.area.AreaDto;
+import org.dailyreports.dto.area.AreaUpdateDto;
 import org.dailyreports.exception.ResourceNotFoundException;
 import org.dailyreports.mapper.AreaMapper;
 import org.dailyreports.model.Area;
@@ -21,6 +22,15 @@ public class AreaService {
 
     public AreaDto save(AreaDto data) {
         Area area = areaMapper.toEntity(data);
+
+        return areaMapper.toDto(areaRepository.save(area));
+    }
+
+    public AreaDto update(long id, AreaUpdateDto data) {
+        Area area = findByIdAsEntity(id);
+
+        if(data.getName() != null)
+            area.setName(data.getName());
 
         return areaMapper.toDto(areaRepository.save(area));
     }

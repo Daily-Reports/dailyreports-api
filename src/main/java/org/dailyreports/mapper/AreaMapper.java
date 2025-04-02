@@ -1,6 +1,6 @@
 package org.dailyreports.mapper;
 
-import org.dailyreports.dto.AreaDto;
+import org.dailyreports.dto.area.AreaDto;
 import org.dailyreports.model.Area;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
