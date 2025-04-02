@@ -1,6 +1,6 @@
 package org.dailyreports.mapper;
 
-import org.dailyreports.dto.EventDto;
+import org.dailyreports.dto.event.EventDto;
 import org.dailyreports.model.Event;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

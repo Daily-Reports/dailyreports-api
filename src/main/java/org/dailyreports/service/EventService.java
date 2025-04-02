@@ -1,7 +1,8 @@
 package org.dailyreports.service;
 
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.EventDto;
+import org.dailyreports.dto.event.EventDto;
+import org.dailyreports.dto.event.EventUpdateDto;
 import org.dailyreports.exception.ResourceNotFoundException;
 import org.dailyreports.mapper.EventMapper;
 import org.dailyreports.model.Event;
@@ -23,6 +24,15 @@ public class EventService {
         Event event = eventMapper.toEntity(data);
 
         return eventMapper.toDto(eventRepository.save(event));
+    }
+
+    public EventDto update(long id, EventUpdateDto data) {
+        Event area = findByIdAsEntity(id);
+
+        if(data.getName() != null)
+            area.setName(data.getName());
+
+        return eventMapper.toDto(eventRepository.save(area));
     }
 
     public EventDto findById(Long id) {

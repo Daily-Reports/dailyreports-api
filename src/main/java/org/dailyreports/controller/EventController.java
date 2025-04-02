@@ -2,7 +2,8 @@ package org.dailyreports.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.EventDto;
+import org.dailyreports.dto.event.EventDto;
+import org.dailyreports.dto.event.EventUpdateDto;
 import org.dailyreports.service.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,11 @@ public class EventController {
     @PostMapping()
     public ResponseEntity<EventDto> create(@Valid @RequestBody EventDto data) {
         return new ResponseEntity<>(eventService.save(data), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}/update")
+    public ResponseEntity<EventDto> update(@PathVariable long id, @RequestBody EventUpdateDto data) {
+        return ResponseEntity.ok(eventService.update(id, data));
     }
 
     @DeleteMapping("/{id}")
