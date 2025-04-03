@@ -17,8 +17,8 @@ public class AuthController {
     private final UserService userService;
 
     @GetMapping("/validate")
-    public ResponseEntity<UserDto> validate(@RequestParam String token) {
-        return ResponseEntity.ok(userService.validate(token));
+    public ResponseEntity<UserDto> validate(@RequestHeader("Authorization") String token) {
+        return ResponseEntity.ok(userService.validate(token.replace("Bearer ", "")));
     }
 
     @PostMapping("/login")
