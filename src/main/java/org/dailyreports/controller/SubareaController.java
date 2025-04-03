@@ -2,6 +2,7 @@ package org.dailyreports.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.dailyreports.dto.area.AreaDto;
 import org.dailyreports.dto.subarea.SubareaDto;
 import org.dailyreports.dto.subarea.SubareaUpdateDto;
 import org.dailyreports.service.SubareaService;
@@ -21,6 +22,11 @@ public class SubareaController {
     @GetMapping()
     public ResponseEntity<List<SubareaDto>> findAll() {
         return new ResponseEntity<>(subareaService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SubareaDto> findById(@PathVariable long id) {
+        return new ResponseEntity<>(subareaService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping()
