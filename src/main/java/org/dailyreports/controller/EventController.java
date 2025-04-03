@@ -23,12 +23,17 @@ public class EventController {
         return new ResponseEntity<>(eventService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<EventDto> findById(@PathVariable long id) {
+        return new ResponseEntity<>(eventService.findById(id), HttpStatus.OK);
+    }
+
     @PostMapping()
     public ResponseEntity<EventDto> create(@Valid @RequestBody EventDto data) {
         return new ResponseEntity<>(eventService.save(data), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}/update")
+    @PatchMapping("/{id}")
     public ResponseEntity<EventDto> update(@PathVariable long id, @RequestBody EventUpdateDto data) {
         return ResponseEntity.ok(eventService.update(id, data));
     }

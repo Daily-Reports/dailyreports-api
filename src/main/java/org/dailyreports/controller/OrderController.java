@@ -27,7 +27,7 @@ public class OrderController {
         return new ResponseEntity<>(orderService.save(data), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}/update")
+    @PatchMapping("/{id}")
     public ResponseEntity<OrderDto> update(@PathVariable long id, @RequestBody OrderUpdateDto data) {
         return ResponseEntity.ok(orderService.update(id, data));
     }

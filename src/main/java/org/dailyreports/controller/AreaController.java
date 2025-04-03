@@ -28,8 +28,7 @@ public class AreaController {
         return new ResponseEntity<>(areaService.save(data), HttpStatus.CREATED);
     }
 
-
-    @PutMapping("/{id}/update")
+    @PatchMapping("/{id}")
     public ResponseEntity<AreaDto> update(@PathVariable long id, @RequestBody AreaUpdateDto data) {
         return ResponseEntity.ok(areaService.update(id, data));
     }

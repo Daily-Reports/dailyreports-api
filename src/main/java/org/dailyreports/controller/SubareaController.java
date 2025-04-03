@@ -28,7 +28,7 @@ public class SubareaController {
         return new ResponseEntity<>(subareaService.save(data), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}/update")
+    @PatchMapping("/{id}")
     public ResponseEntity<SubareaDto> update(@PathVariable long id, @RequestBody SubareaUpdateDto data) {
         return ResponseEntity.ok(subareaService.update(id, data));
     }
