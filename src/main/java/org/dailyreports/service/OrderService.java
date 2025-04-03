@@ -28,7 +28,7 @@ public class OrderService {
     private final SubareaService subareaService;
 
     public OrderDto save(OrderDto data) {
-        if(orderRepository.findByNumber(data.getNumber()) != null)
+        if(orderRepository.findByOrderNumber(data.getOrderNumber()) != null)
             throw new OrderNumberAlreadyUsedException("This order number is already in use.");
 
         Event event = eventService.findByIdAsEntity(data.getEventId());

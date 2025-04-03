@@ -22,7 +22,7 @@ public class Order {
 
     @NotNull
     @NumberLength(length = 10)
-    private Long number;
+    private Long orderNumber;
 
     @NotNull
     @ManyToOne
