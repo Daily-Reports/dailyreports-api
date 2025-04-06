@@ -9,7 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import org.dailyreports.model.OrderSpeciality;
 import org.dailyreports.model.OrderStatus;
-import org.dailyreports.validation.NumberLength;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +19,6 @@ public class OrderDto {
     private Long id;
 
     @NotNull
-    @NumberLength(length = 10)
     private Long orderNumber;
 
     @NotNull

@@ -28,6 +28,9 @@ public class OrderService {
     private final SubareaService subareaService;
 
     public OrderDto save(OrderDto data) {
+        if(String.valueOf(data.getOrderNumber()).length() != 10)
+            throw new OrderNumberAlreadyUsedException("The order number must be 10 digits long");
+
         if(orderRepository.findByOrderNumber(data.getOrderNumber()) != null)
             throw new OrderNumberAlreadyUsedException("This order number is already in use.");
 

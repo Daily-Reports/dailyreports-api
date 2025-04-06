@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.dailyreports.validation.NumberLength;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ public class Order {
     private Long id;
 
     @NotNull
-    @NumberLength(length = 10)
     private Long orderNumber;
 
     @NotNull

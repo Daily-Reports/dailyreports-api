@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.dailyreports.dto.area.AreaDto;
 import org.dailyreports.dto.area.AreaUpdateDto;
-import org.dailyreports.dto.event.EventDto;
 import org.dailyreports.service.AreaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

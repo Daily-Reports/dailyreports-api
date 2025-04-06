@@ -2,7 +2,6 @@ package org.dailyreports.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.area.AreaDto;
 import org.dailyreports.dto.subarea.SubareaDto;
 import org.dailyreports.dto.subarea.SubareaUpdateDto;
 import org.dailyreports.service.SubareaService;
