@@ -1,4 +1,4 @@
-package org.dailyreports.dto;
+package org.dailyreports.dto.employee;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

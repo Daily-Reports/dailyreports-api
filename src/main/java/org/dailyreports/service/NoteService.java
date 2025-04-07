@@ -1,7 +1,7 @@
 package org.dailyreports.service;
 
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.EmployeeDto;
+import org.dailyreports.dto.employee.EmployeeDto;
 import org.dailyreports.dto.note.NoteDto;
 import org.dailyreports.dto.note.NoteUpdateDto;
 import org.dailyreports.exception.ImageException;
