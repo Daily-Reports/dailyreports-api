@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-;
-
 @RequiredArgsConstructor
 @Service
 @Transactional
@@ -50,8 +48,23 @@ public class OrderService {
     public OrderDto update(Long id, OrderUpdateDto data) {
         Order order = findByIdAsEntity(id);
 
+        if(data.getTechnical() != null)
+            order.setTechnical(data.getTechnical());
+
         if(data.getDescription() != null)
             order.setDescription(data.getDescription());
+
+        if(data.getEventId() != null)
+            order.setEvent(eventService.findByIdAsEntity(data.getEventId()));
+
+        if(data.getAreaId() != null)
+            order.setArea(areaService.findByIdAsEntity(data.getAreaId()));
+
+        if(data.getSubareaId() != null)
+            order.setSubarea(subareaService.findByIdAsEntity(data.getSubareaId()));
+
+        if(data.getSpeciality() != null)
+            order.setSpeciality(data.getSpeciality());
 
         if(data.getStatus() != null) {
             if(data.getEndDate() != null)

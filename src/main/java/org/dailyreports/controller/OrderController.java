@@ -22,6 +22,12 @@ public class OrderController {
     public ResponseEntity<List<OrderDto>> findAll() {
         return new ResponseEntity<>(orderService.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderDto> findById(@PathVariable long id) {
+        return new ResponseEntity<>(orderService.findById(id), HttpStatus.OK);
+    }
+
     @PostMapping()
     public ResponseEntity<OrderDto> create(@Valid @RequestBody OrderDto data) {
         return new ResponseEntity<>(orderService.save(data), HttpStatus.CREATED);
@@ -29,6 +35,8 @@ public class OrderController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<OrderDto> update(@PathVariable long id, @RequestBody OrderUpdateDto data) {
+        System.out.println("Updating data " + data);
+
         return ResponseEntity.ok(orderService.update(id, data));
     }
 
