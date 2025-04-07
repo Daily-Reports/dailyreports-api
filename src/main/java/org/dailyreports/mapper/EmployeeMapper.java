@@ -1,6 +1,6 @@
 package org.dailyreports.mapper;
 
-import org.dailyreports.dto.EmployeeDto;
+import org.dailyreports.dto.employee.EmployeeDto;
 import org.dailyreports.model.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
