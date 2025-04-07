@@ -1,7 +1,8 @@
 package org.dailyreports.service;
 
 import lombok.RequiredArgsConstructor;
-import org.dailyreports.dto.EmployeeDto;
+import org.dailyreports.dto.employee.EmployeeDto;
+import org.dailyreports.dto.employee.EmployeeUpdateDto;
 import org.dailyreports.exception.ResourceNotFoundException;
 import org.dailyreports.mapper.EmployeeMapper;
 import org.dailyreports.model.Employee;
@@ -21,6 +22,15 @@ public class EmployeeService {
 
     public EmployeeDto save(EmployeeDto data) {
         Employee employee = employeeMapper.toEntity(data);
+
+        return employeeMapper.toDto(employeeRepository.save(employee));
+    }
+
+    public EmployeeDto update(long id, EmployeeUpdateDto data) {
+        Employee employee = findByIdAsEntity(id);
+
+        if(data.getType() != null)
+            employee.setType(data.getType());
 
         return employeeMapper.toDto(employeeRepository.save(employee));
     }
