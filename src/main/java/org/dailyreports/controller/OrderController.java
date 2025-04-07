@@ -35,8 +35,6 @@ public class OrderController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<OrderDto> update(@PathVariable long id, @RequestBody OrderUpdateDto data) {
-        System.out.println("Updating data " + data);
-
         return ResponseEntity.ok(orderService.update(id, data));
     }
 
